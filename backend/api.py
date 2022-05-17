@@ -29,8 +29,7 @@ class GetAvailableSlotsForBranchOnDate(Resource):
     dates = politi_api.get_available_time_for_date(branch_id, date)
     if dates:
       return dates
-    response.status_code = status.HTTP_404_NOT_FOUND
-    return {"message": "No available slots for that date"}
+    api.abort(404, "No available slots for that date")
 
 if __name__ == '__main__':
     app.run(debug=True)
