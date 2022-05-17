@@ -1,47 +1,36 @@
-import fastapi
-from fastapi import FastAPI, Response, status
-from fastapi.middleware.cors import CORSMiddleware
+from flask import Flask
+from flask_restx import Api, Resource
 from typing import Optional
 from controller import PolitiAPI
 
-origins = [
-  "*"
-]
 
-app = FastAPI()
-
-app.add_middleware(
-  CORSMiddleware,
-  allow_origins=origins,
-  allow_methods=["*"],
-  allow_headers=["*"],
-)
+app = Flask(__name__)
+api = Api(app)
 
 politi_api = PolitiAPI()
 
-@app.get("/branches")
-def get_branches():
-  return politi_api.get_branches()
-  
-"""
-@app.get("/branches/{city_name}")
-def get_branches_city(city_name: str):
-  branches = politi_api.getBranches()
-"""
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello': 'world'}
 
-@app.get("/schedules/{branch_id}")
-def get_schedules(branch_id: str):
-  return politi_api.get_schedule_date_list(branch_id)
+@api.route("/branches")
+class GetBranches(Resource):
+  def get(self):
+    return politi_api.get_branches()  
 
-@app.get("/schedules/{branch_id}/{date}")
-def get_available_dates(branch_id: str, date: str, response: Response):
-  dates = politi_api.get_available_time_for_date(branch_id, date)
-  if dates:
-    return dates
-  response.status_code = status.HTTP_404_NOT_FOUND
-  return {"message": "No available slots for that date"}
+@api.route('/schedules/<string:branch_id>')
+class GetSchedules(Resource):
+  def get(self, branch_id: str):
+    return politi_api.get_schedule_date_list(branch_id)
 
+@api.route('/schedules/<string:branch_id>/<string:date>')
+class GetAvailableSlotsForBranchOnDate(Resource):
+  def get(self, branch_id: str, date: str):
+    dates = politi_api.get_available_time_for_date(branch_id, date)
+    if dates:
+      return dates
+    response.status_code = status.HTTP_404_NOT_FOUND
+    return {"message": "No available slots for that date"}
 
-@app.post('/register')
-def register_user(email: str, branch_id: str, date: str):
-  pass
+if __name__ == '__main__':
+    app.run(debug=True)
