@@ -43,6 +43,5 @@ def get_available_dates(branch_id: str, date: str, response: Response):
 
 
 @app.post('/register')
-def register_user(email):
+def register_user(email: str, branch_id: str, date: str):
   pass
-  
