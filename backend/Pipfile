@@ -7,7 +7,8 @@ name = "pypi"
 requests = "*"
 flask = "*"
 flask-restx = "*"
-sqlalchemy = "*"
+flask-jwt-extended = "*"
+peewee = "*"
 
 [dev-packages]
 
