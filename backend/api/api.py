@@ -3,10 +3,7 @@ from http import HTTPStatus
 from db import *
 from flask import Flask
 from flask_restx import Api, Resource
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from parsers import *
 from typing import Optional
 from politiapi import PolitiAPI
@@ -89,7 +86,7 @@ class AddDate(Resource):
     dates = args.get('dates')
     branches = args.get('branches')
     add_date(phone_number=current_user, date_str=dates, branch=branches)
-    return {"logged_in_as": current_user}
+    return {"message": "Successfully added date"}
 
 if __name__ == '__main__':
     app.run(debug=True)

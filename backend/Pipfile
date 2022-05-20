@@ -9,6 +9,7 @@ flask = "*"
 flask-restx = "*"
 flask-jwt-extended = "*"
 peewee = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

@@ -1,0 +1,36 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn init vue@3
+
+PATH: 
+  /home/anon/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/home/anon/.dotnet/tools:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/anon/.bin/scripts:/home/anon/.yarn/bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  18.1.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:137143:13)
+      at Interface.emit (node:events:527:28)
+      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1123:18)
+      at ReadStream.onkeypress (node:internal/readline/interface:272:20)
+      at ReadStream.emit (node:events:527:28)
+      at emitKeys (node:internal/readline/utils:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+      at ReadStream.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:324:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
