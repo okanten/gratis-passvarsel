@@ -10,6 +10,7 @@ flask-restx = "*"
 flask-jwt-extended = "*"
 peewee = "*"
 python-dotenv = "*"
+colorama = "*"
 
 [dev-packages]
 
